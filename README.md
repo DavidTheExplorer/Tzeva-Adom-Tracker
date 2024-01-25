@@ -8,12 +8,11 @@ Once a Tzeva Adom happens, a *POST* request is sent to all registered endpoints.
 Every request contains an Authorization header with the user's **API Token** - without it the endpoint should ignore the request!
 
 Example of request's payload:\
-![image](https://github.com/DavidTheExplorer/Tzeva-Adom-Tracker/assets/69223217/661095a9-ada9-4fd5-a7fd-afb98aff59c8)
-
+![image](https://github.com/DavidTheExplorer/Tzeva-Adom-Tracker/assets/69223217/14514cd6-ef58-4bb5-9018-5ad4b0018896)
 
 ## Console Logging
 Notifications are also logged to the console:
-![image](https://github.com/DavidTheExplorer/Tzeva-Adom-Tracker/assets/69223217/bac8725f-eae8-4d0a-81a4-e5e87b2272c7)
+![image](https://github.com/DavidTheExplorer/Tzeva-Adom-Tracker/assets/69223217/91168d57-db87-4b07-81de-eaa587e6f206)
 * When a registered endpoint cannot be notified(e.g. offline), the exact error is logged.
 
 ## How to Install
