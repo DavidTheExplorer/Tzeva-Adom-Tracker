@@ -15,7 +15,7 @@ public class TzevaAdomNotifierInitializer
 {
     private final ApplicationEventPublisher eventPublisher;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TzevaAdomNotifierInitializer.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TzevaAdomNotifier.class);
 
     public TzevaAdomNotifierInitializer(ApplicationEventPublisher eventPublisher)
     {
@@ -26,8 +26,6 @@ public class TzevaAdomNotifierInitializer
     public void startListening()
     {
         createNotifier().listenAsync();
-
-        LOGGER.info("Listening to Tzeva Adoms...");
     }
 
     private TzevaAdomNotifier createNotifier()
