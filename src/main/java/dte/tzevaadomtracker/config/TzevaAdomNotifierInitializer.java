@@ -1,16 +1,15 @@
-package dte.tzevaadomtracker.initializers;
+package dte.tzevaadomtracker.config;
 
 import dte.tzevaadomapi.notifier.TzevaAdomNotifier;
 import dte.tzevaadomtracker.events.TzevaAdomEvent;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Component;
 
-@Configuration
+@Component
 public class TzevaAdomNotifierInitializer
 {
     private final ApplicationEventPublisher eventPublisher;
@@ -23,12 +22,12 @@ public class TzevaAdomNotifierInitializer
     }
 
     @EventListener(ApplicationReadyEvent.class)
-    public void startListening()
+    public void startNotifier()
     {
-        createNotifier().listenAsync();
+        createEventPublisherNotifier().listenAsync();
     }
 
-    private TzevaAdomNotifier createNotifier()
+    private TzevaAdomNotifier createEventPublisherNotifier()
     {
         return new TzevaAdomNotifier.Builder()
                 .onTzevaAdom(alert -> this.eventPublisher.publishEvent(new TzevaAdomEvent(alert)))
