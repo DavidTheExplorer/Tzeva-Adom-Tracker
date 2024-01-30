@@ -8,10 +8,10 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @SpringBootApplication
 @EnableAsync
 @EnableCaching
-public class TzevaAdomTrackerApplication
+public class TzevaAdomTracker
 {
 	public static void main(String[] args)
 	{
-		SpringApplication.run(TzevaAdomTrackerApplication.class, args);
+		SpringApplication.run(TzevaAdomTracker.class, args);
 	}
 }
