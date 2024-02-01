@@ -15,7 +15,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -68,6 +68,6 @@ public class AlertEndpointService
 
     public long getEndpointsAmount()
     {
-        return this.alertEndpointRepository.count();
+        return this.endpoints.size();
     }
 }
