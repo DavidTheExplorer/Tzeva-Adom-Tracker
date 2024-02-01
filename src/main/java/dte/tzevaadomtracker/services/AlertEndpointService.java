@@ -7,6 +7,7 @@ import dte.tzevaadomtracker.repositories.AlertEndpointRepository;
 import dte.tzevaadomtracker.webclient.WebClientFactory;
 
 import jakarta.annotation.PostConstruct;
+import org.atteo.evo.inflector.English;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.event.EventListener;
@@ -38,7 +39,7 @@ public class AlertEndpointService
     {
         this.endpoints.addAll(this.alertEndpointRepository.findAll());
 
-        LOGGER.info("Loaded {} endpoints from the database.", this.endpoints.size());
+        LOGGER.info("Loaded {} {} from the database.", this.endpoints.size(), English.plural("endpoint", this.endpoints.size()));
     }
 
     @Async
@@ -48,7 +49,7 @@ public class AlertEndpointService
         Alert alert = event.getSource();
 
         //log the Tzeva Adom
-        LOGGER.info("Notifying {} server(s) about a Tzeva Adom in {}!", this.alertEndpointRepository.count(), alert.getRegion());
+        LOGGER.info("Notifying {} {} about a Tzeva Adom in {}!", this.endpoints.size(), English.plural("endpoint", this.endpoints.size()), alert.getRegion());
 
         //notify the users' servers
         this.endpoints.forEach(server -> notifyTzevaAdom(server, alert));
