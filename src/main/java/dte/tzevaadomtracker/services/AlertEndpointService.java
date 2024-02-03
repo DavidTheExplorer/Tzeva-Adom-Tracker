@@ -17,7 +17,7 @@ import java.util.List;
 public class AlertEndpointService
 {
     private final AlertEndpointRepository alertEndpointRepository;
-    private final List<AlertEndpoint> endpoints = new ArrayList<>();
+    private List<AlertEndpoint> endpoints;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AlertEndpointService.class);
 
@@ -29,7 +29,7 @@ public class AlertEndpointService
     @PostConstruct
     private void loadAllEndpoints()
     {
-        this.endpoints.addAll(this.alertEndpointRepository.findAll());
+        this.endpoints = new ArrayList<>(this.alertEndpointRepository.findAll());
 
         LOGGER.info("Loaded {} {} from the database.", this.endpoints.size(), English.plural("endpoint", this.endpoints.size()));
     }
