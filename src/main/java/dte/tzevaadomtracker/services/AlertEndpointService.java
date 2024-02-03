@@ -33,7 +33,7 @@ public class AlertEndpointService
     }
 
     @PostConstruct
-    public void loadAllEndpoints()
+    private void loadAllEndpoints()
     {
         this.endpoints.addAll(this.alertEndpointRepository.findAll());
 

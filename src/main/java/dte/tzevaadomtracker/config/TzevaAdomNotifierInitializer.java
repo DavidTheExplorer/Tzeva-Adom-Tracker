@@ -1,5 +1,6 @@
 package dte.tzevaadomtracker.config;
 
+import dte.tzevaadomapi.alert.Alert;
 import dte.tzevaadomapi.notifier.TzevaAdomNotifier;
 import dte.tzevaadomtracker.events.TzevaAdomEvent;
 import org.slf4j.Logger;
@@ -22,16 +23,18 @@ public class TzevaAdomNotifierInitializer
     }
 
     @EventListener(ApplicationReadyEvent.class)
-    public void startNotifier()
+    public void startEventPublisherNotifier()
     {
-        createEventPublisherNotifier().listenAsync();
-    }
-
-    private TzevaAdomNotifier createEventPublisherNotifier()
-    {
-        return new TzevaAdomNotifier.Builder()
-                .onTzevaAdom(alert -> this.eventPublisher.publishEvent(new TzevaAdomEvent(alert)))
+        TzevaAdomNotifier notifier = new TzevaAdomNotifier.Builder()
+                .onTzevaAdom(this::publishEvent)
                 .onFailedRequest(exception -> LOGGER.error("Could not check if it's Tzeva Adom - {}", exception.getMessage()))
                 .build();
+
+        notifier.listenAsync();
+    }
+
+    private void publishEvent(Alert alert)
+    {
+        this.eventPublisher.publishEvent(new TzevaAdomEvent(alert));
     }
 }
