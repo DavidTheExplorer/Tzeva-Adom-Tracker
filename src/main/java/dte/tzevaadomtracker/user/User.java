@@ -15,22 +15,22 @@ public class User
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String firstName;
 
     @Column(nullable = false)
     private UUID personalToken;
 
-    public User(String name, UUID personalToken)
+    public User(String firstName, UUID personalToken)
     {
-        this.name = name;
+        this.firstName = firstName;
         this.personalToken = personalToken;
     }
 
     protected User(){}
 
-    public String getName()
+    public String getFirstName()
     {
-        return this.name;
+        return this.firstName;
     }
 
     public UUID getPersonalToken()

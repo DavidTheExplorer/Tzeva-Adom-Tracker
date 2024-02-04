@@ -18,16 +18,17 @@ public class UserService
         this.userRepository = userRepository;
     }
 
+    public User findByPersonalToken(UUID personalToken)
+    {
+        return this.userRepository.findByPersonalToken(personalToken)
+                .orElseThrow(() -> new IllegalArgumentException(String.format("Couldn't find a user identified by the token '%s'", personalToken)));
+    }
+
     public UUID createUser(UserCreationRequest request)
     {
-        String name = request.name();
-
-        if(this.userRepository.existsByName(name))
-            throw new IllegalArgumentException(String.format("The username '%s' is taken!", name));
-
         UUID personalToken = UUID.randomUUID();
 
-        this.userRepository.save(new User(name, personalToken));
+        this.userRepository.save(new User(request.firstName(), personalToken));
 
         return personalToken;
     }
