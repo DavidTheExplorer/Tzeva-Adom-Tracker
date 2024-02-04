@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AlertEndpointRepository extends JpaRepository<AlertEndpoint, Long>
 {
-    
+    boolean existsByUrl(String url);
 }
