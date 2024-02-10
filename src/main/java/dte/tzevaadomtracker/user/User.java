@@ -17,7 +17,7 @@ public class User
     @Column(nullable = false)
     private String firstName;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private UUID personalToken;
 
     public User(String firstName, UUID personalToken)
