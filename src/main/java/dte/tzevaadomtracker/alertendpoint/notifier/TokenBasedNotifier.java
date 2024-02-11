@@ -1,6 +1,7 @@
 package dte.tzevaadomtracker.alertendpoint.notifier;
 
 import dte.tzevaadomapi.alert.Alert;
+import dte.tzevaadomtracker.alert.AlertEntity;
 import dte.tzevaadomtracker.alertendpoint.AlertEndpoint;
 
 import org.slf4j.Logger;
@@ -26,7 +27,7 @@ public class TokenBasedNotifier implements AlertEndpointNotifier
     private static final Logger LOGGER = LoggerFactory.getLogger(TokenBasedNotifier.class);
 
     @Override
-    public void notifyTzevaAdom(AlertEndpoint endpoint, Alert alert)
+    public void notifyTzevaAdom(AlertEndpoint endpoint, AlertEntity alert)
     {
         this.self.getClientOf(endpoint)
                 .post()
