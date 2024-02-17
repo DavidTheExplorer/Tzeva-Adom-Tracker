@@ -1,18 +1,18 @@
 package dte.tzevaadomtracker.events;
 
-import dte.tzevaadomtracker.alert.AlertEntity;
+import dte.tzevaadomapi.alert.Alert;
 import org.springframework.context.ApplicationEvent;
 
 public class TzevaAdomEvent extends ApplicationEvent
 {
-    public TzevaAdomEvent(AlertEntity alert)
+    public TzevaAdomEvent(Alert alert)
     {
         super(alert);
     }
 
     @Override
-    public AlertEntity getSource()
+    public Alert getSource()
     {
-        return (AlertEntity) super.getSource();
+        return (Alert) super.getSource();
     }
 }

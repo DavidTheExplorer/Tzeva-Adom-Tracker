@@ -1,6 +1,6 @@
 package dte.tzevaadomtracker.listeners;
 
-import dte.tzevaadomtracker.alert.AlertEntity;
+import dte.tzevaadomapi.alert.Alert;
 import dte.tzevaadomtracker.alertendpoint.notifier.AlertEndpointNotifier;
 import dte.tzevaadomtracker.events.TzevaAdomEvent;
 import dte.tzevaadomtracker.services.AlertEndpointService;
@@ -31,20 +31,20 @@ public class TzevaAdomPublishingListener
     @EventListener
     public void onTzevaAdom(TzevaAdomEvent event)
     {
-        AlertEntity alert = event.getSource();
+        Alert alert = event.getSource();
 
         logToConsole(alert);
         notifyEndpoints(alert);
     }
 
-    private void logToConsole(AlertEntity alert)
+    private void logToConsole(Alert alert)
     {
         int endpointsAmount = (int) this.alertEndpointService.getEndpointsAmount();
 
         LOGGER.info("Notifying {} {} about a Tzeva Adom in {}!", endpointsAmount, English.plural("endpoint", endpointsAmount), alert.getRegion());
     }
 
-    private void notifyEndpoints(AlertEntity alert)
+    private void notifyEndpoints(Alert alert)
     {
         this.alertEndpointService.getEndpoints().forEach(endpoint -> this.alertEndpointNotifier.notifyTzevaAdom(endpoint, alert));
     }
