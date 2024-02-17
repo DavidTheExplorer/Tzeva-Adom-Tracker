@@ -105,7 +105,7 @@
 		<dependency>
 			<groupId>com.github.DavidTheExplorer</groupId>
 			<artifactId>Tzeva-Adom-API</artifactId>
-			<version>1.6.0</version>
+			<version>1.7.0</version>
 		</dependency>
 
 		<dependency>
