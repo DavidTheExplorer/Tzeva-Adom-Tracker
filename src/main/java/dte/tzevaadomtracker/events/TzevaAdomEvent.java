@@ -5,14 +5,17 @@ import org.springframework.context.ApplicationEvent;
 
 public class TzevaAdomEvent extends ApplicationEvent
 {
+    private final Alert alert;
+
     public TzevaAdomEvent(Alert alert)
     {
         super(alert);
+
+        this.alert = alert;
     }
 
-    @Override
-    public Alert getSource()
+    public Alert getAlert()
     {
-        return (Alert) super.getSource();
+        return this.alert;
     }
 }

@@ -31,7 +31,7 @@ public class TzevaAdomPublishingListener
     @EventListener
     public void onTzevaAdom(TzevaAdomEvent event)
     {
-        Alert alert = event.getSource();
+        Alert alert = event.getAlert();
 
         logToConsole(alert);
         notifyEndpoints(alert);
