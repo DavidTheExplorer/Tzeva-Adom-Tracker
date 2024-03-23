@@ -2,6 +2,7 @@ package dte.tzevaadomtracker.controllers;
 
 import dte.tzevaadomtracker.dto.requests.EndpointRegistrationRequest;
 import dte.tzevaadomtracker.services.AlertEndpointService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +23,7 @@ public class AlertEndpointController
     }
 
     @PostMapping
-    public ResponseEntity<Void> registerEndpoint(@RequestBody EndpointRegistrationRequest request)
+    public ResponseEntity<Void> registerEndpoint(@RequestBody @Valid EndpointRegistrationRequest request)
     {
         this.alertEndpointService.registerEndpoint(request);
 

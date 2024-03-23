@@ -4,6 +4,7 @@ import dte.tzevaadomtracker.dto.requests.UserCreationRequest;
 import dte.tzevaadomtracker.dto.responses.UserCreationResponse;
 import dte.tzevaadomtracker.services.UserService;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,7 +27,7 @@ public class UserController
     }
 
     @PostMapping
-    public ResponseEntity<UserCreationResponse> createUser(@RequestBody UserCreationRequest request)
+    public ResponseEntity<UserCreationResponse> createUser(@RequestBody @Valid UserCreationRequest request)
     {
         UUID personalToken = this.userService.createUser(request);
 

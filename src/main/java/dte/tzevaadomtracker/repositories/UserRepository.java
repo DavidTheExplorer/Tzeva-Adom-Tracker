@@ -11,4 +11,6 @@ import java.util.UUID;
 public interface UserRepository extends JpaRepository<User, Long>
 {
     Optional<User> findByPersonalToken(UUID token);
+
+    boolean existsByPersonalToken(UUID personalToken);
 }

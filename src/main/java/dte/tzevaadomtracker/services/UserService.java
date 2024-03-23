@@ -24,6 +24,11 @@ public class UserService
                 .orElseThrow(() -> new IllegalArgumentException(String.format("Couldn't find a user identified by the token '%s'", personalToken)));
     }
 
+    public boolean existsByToken(UUID personalToken)
+    {
+        return this.userRepository.existsByPersonalToken(personalToken);
+    }
+
     public UUID createUser(UserCreationRequest request)
     {
         UUID personalToken = UUID.randomUUID();

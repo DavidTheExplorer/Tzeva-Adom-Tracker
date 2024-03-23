@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class AlertEndpointService
@@ -43,9 +44,10 @@ public class AlertEndpointService
         String url = request.url();
 
         if(this.alertEndpointRepository.existsByUrl(url))
-            throw new IllegalArgumentException(String.format("Endpoint '%s' is already registered!", url));
+            throw new IllegalArgumentException("Endpoint was already registered");
 
-        User owner = this.userService.findByPersonalToken(request.personalToken());
+        UUID ownerToken = UUID.fromString(request.personalToken());
+        User owner = this.userService.findByPersonalToken(ownerToken);
 
         //save the endpoint in the database
         AlertEndpoint endpoint = this.alertEndpointRepository.save(new AlertEndpoint(url, owner));
